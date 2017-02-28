@@ -44,3 +44,4 @@
 |admin|Login Successful|127.0.0.1|1487948981|/admin.php?a=login|username=admin, password=***, submit=, csrf_token=6fa725aa6941804f|
 |admin|Login Successful|127.0.0.1|1487954991|/admin.php?a=login|username=admin, password=***, submit=, csrf_token=6fa725aa6941804f|
 |admin|config/config/run|127.0.0.1|1487955154|/admin.php?m=config&c=config||
+|admin|Login Successful|127.0.0.1|1488007624|/admin.php?a=login|username=admin, password=***, submit=, csrf_token=a8ca0dfc4915f748|
