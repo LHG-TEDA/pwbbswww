@@ -43,10 +43,10 @@
 			'info.notice' => '',
 			'task.isOpen' => '1',
 			'medal.isopen' => '1',
-			'homeUrl' => 'index.php?m=bbs',
+			'homeUrl' => 'index.php?m=tag',
 			'windid' => 'local',
 			'homeRouter' => array(
-				'm' => 'bbs',
+				'm' => 'tag',
 				'c' => 'index',
 				'a' => 'run',
 			),
@@ -339,20 +339,20 @@
 		'nav' => array(
 			'main' => array(
 				'0' => array(
-					'name' => '<a href="index.php?m=bbs">论坛</a>',
-					'sign' => 'bbs|index|run|',
+					'name' => '<a href="http://www.pwbbs.com/index.php?m=tag">首页</a>',
+					'sign' => 'tag|index|run|',
 				),
 				'1' => array(
-					'name' => '<a href="index.php?m=bbs&c=forumlist">版块</a>',
-					'sign' => 'bbs|forumlist|run|',
+					'name' => '<a href="http://www.pwbbs.com/index.php?m=bbs">论坛</a>',
+					'sign' => 'bbs|index|run|',
 				),
 				'2' => array(
-					'name' => '<a href="index.php?m=like&c=like">喜欢</a>',
+					'name' => '<a href="http://www.pwbbs.com/index.php?m=like&c=like">喜欢</a>',
 					'sign' => 'like|like|run|',
 				),
 				'3' => array(
-					'name' => '<a href="index.php?m=tag">话题</a>',
-					'sign' => 'tag|index|run|',
+					'name' => '<a href="http://www.pwbbs.com/index.php?m=tag&a=my">我的关注</a>',
+					'sign' => 'tag|index|my|',
 				),
 			),
 			'bottom' => array(
@@ -375,31 +375,31 @@
 			),
 			'my' => array(
 				'0' => array(
-					'name' => '<a href="index.php?m=space"><em class="icon_space"></em>我的空间</a>',
+					'name' => '<a href="http://www.pwbbs.com/index.php?m=space"><em class="icon_space"></em>我的空间</a>',
 					'sign' => 'space',
 				),
 				'1' => array(
-					'name' => '<a href="index.php?m=my&c=fresh"><em class="icon_fresh"></em>我的关注</a>',
+					'name' => '<a href="http://www.pwbbs.com/index.php?m=my&c=fresh"><em class="icon_fresh"></em>我的关注</a>',
 					'sign' => 'fresh',
 				),
 				'2' => array(
-					'name' => '<a href="index.php?m=bbs&c=forum&a=my"><em class="icon_forum"></em>我的版块</a>',
+					'name' => '<a href="http://www.pwbbs.com/index.php?m=bbs&c=forum&a=my"><em class="icon_forum"></em>我的版块</a>',
 					'sign' => 'forum',
 				),
 				'3' => array(
-					'name' => '<a href="index.php?m=my&c=article"><em class="icon_article"></em>我的帖子</a>',
+					'name' => '<a href="http://www.pwbbs.com/index.php?m=my&c=article"><em class="icon_article"></em>我的帖子</a>',
 					'sign' => 'article',
 				),
 				'4' => array(
-					'name' => '<a href="index.php?m=vote&c=my"><em class="icon_vote"></em>我的投票</a>',
+					'name' => '<a href="http://www.pwbbs.com/index.php?m=vote&c=my"><em class="icon_vote"></em>我的投票</a>',
 					'sign' => 'vote',
 				),
 				'5' => array(
-					'name' => '<a href="index.php?m=task"><em class="icon_task"></em>我的任务</a>',
+					'name' => '<a href="http://www.pwbbs.com/index.php?m=task"><em class="icon_task"></em>我的任务</a>',
 					'sign' => 'task',
 				),
 				'6' => array(
-					'name' => '<a href="index.php?m=medal"><em class="icon_medal"></em>我的勋章</a>',
+					'name' => '<a href="http://www.pwbbs.com/index.php?m=medal"><em class="icon_medal"></em>我的勋章</a>',
 					'sign' => 'medal',
 				),
 			),

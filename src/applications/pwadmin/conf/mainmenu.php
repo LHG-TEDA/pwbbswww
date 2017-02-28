@@ -67,19 +67,21 @@ return array(
 	'u_forbidden' => array('用户禁止', 'u/forbidden/*', '', '', 'u'),
 	'u_check' => array('新用户审核', 'u/check/*', '', '', 'u'),
 
-	'bbs_article' => array('帖子管理', 'bbs/article/*', '', '', 'contents'),
-	'contents_tag' => array('话题管理', 'tag/manage/*', '', '', 'contents'),
-	'contents_message' => array('私信管理', 'message/manage/*', '', '', 'contents'),
-	'contents_report' => array('举报管理', 'report/manage/*', '', '', 'contents'),
-	//'bbs_contentcheck' => array('内容审核', array(), '', '', 'contents'),
-	'bbs_contentcheck_forum' => array('帖子审核', 'bbs/contentcheck/*', '', '', 'contents'),
-	'contentcheck_word' => array('敏感词管理', 'word/manage/*', '', '', 'contents'),
-	'contents_user_tag' => array('个人标签', 'u/tag/*', '', '', 'contents'),
-	'bbs_recycle' => array('回收站', 'bbs/recycle/*', '', '', 'contents'),
+    'contents_tag' => array('话题管理', 'tag/manage/*', '', '', 'contents'),
+    //'bbs_contentcheck' => array('内容审核', array(), '', '', 'contents'),
 
+
+
+    'bbs_article' => array('帖子管理', 'bbs/article/*', '', '', 'bbs'),
+    'bbs_contentcheck_forum' => array('帖子审核', 'bbs/contentcheck/*', '', '', 'bbs'),
+    'contents_user_tag' => array('个人标签', 'u/tag/*', '', '', 'bbs'),
 	'bbs_configbbs' => array('论坛设置', 'bbs/configbbs/*', '', '', 'bbs'),
 	'bbs_setforum' => array('版块管理', 'bbs/setforum/*', '', '', 'bbs'),
 	'bbs_setbbs' => array('功能细节', 'bbs/setbbs/*', '', '', 'bbs'),
+    'contents_message' => array('私信管理', 'message/manage/*', '', '', 'bbs'),
+    'contents_report' => array('举报管理', 'report/manage/*', '', '', 'bbs'),
+    'contentcheck_word' => array('敏感词管理', 'word/manage/*', '', '', 'bbs'),
+    'bbs_recycle' => array('回收站', 'bbs/recycle/*', '', '', 'bbs'),
 	
 
 	'design_page' => array('页面管理', 'design/page,portal/*', '', '', 'design'),

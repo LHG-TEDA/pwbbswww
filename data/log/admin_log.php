@@ -45,3 +45,106 @@
 |admin|Login Successful|127.0.0.1|1487954991|/admin.php?a=login|username=admin, password=***, submit=, csrf_token=6fa725aa6941804f|
 |admin|config/config/run|127.0.0.1|1487955154|/admin.php?m=config&c=config||
 |admin|Login Successful|127.0.0.1|1488007624|/admin.php?a=login|username=admin, password=***, submit=, csrf_token=a8ca0dfc4915f748|
+|admin|Login Successful|127.0.0.1|1488290563|/admin.php?a=login|username=admin, password=***, submit=, csrf_token=83d0b17ded3997e7|
+|admin|windidclient/schooldata/run|127.0.0.1|1488290610|/admin.php?m=windidclient&c=schooldata||
+|admin|windidclient/schooldata/run|127.0.0.1|1488290612|/admin.php?m=windidclient&c=schooldata||
+|admin|windidclient/schooldata/run|127.0.0.1|1488290674|/admin.php?m=windidclient&c=schooldata||
+|admin|config/config/run|127.0.0.1|1488291454|/admin.php?m=config&c=config||
+|admin|config/editor/run|127.0.0.1|1488291463|/admin.php?m=config&c=editor||
+|admin|emotion/emotion/run|127.0.0.1|1488291465|/admin.php?m=emotion&c=emotion||
+|admin|windidclient/schooldata/run|127.0.0.1|1488292095|/admin.php?m=windidclient&c=schooldata||
+|admin|bbs/cache/run|127.0.0.1|1488292097|/admin.php?m=bbs&c=cache||
+|admin|bbs/cache/run|127.0.0.1|1488292098|/admin.php?m=bbs&c=cache||
+|admin|bbs/cache/dorun|127.0.0.1|1488292122|/admin.php?m=bbs&c=cache&a=dorun||
+|admin|bbs/cache/doforum|127.0.0.1|1488292123|/admin.php?m=bbs&c=cache&a=doforum||
+|admin|bbs/cache/doforum|127.0.0.1|1488292127|/admin.php?m=bbs&c=cache&a=doforum||
+|admin|bbs/cache/doCss|127.0.0.1|1488292133|/admin.php?m=bbs&c=cache&a=doCss||
+|admin|bbs/cache/doTpl|127.0.0.1|1488292140|/admin.php?m=bbs&c=cache&a=doTpl||
+|admin|hook/manage/run|127.0.0.1|1488292144|/admin.php?m=hook&c=manage||
+|admin|cron/cron/run|127.0.0.1|1488292153|/admin.php?m=cron&c=cron||
+|admin|windidclient/schooldata/run|127.0.0.1|1488292179|/admin.php?type=2&m=windidclient&c=schooldata||
+|admin|log/manage/run|127.0.0.1|1488292186|/admin.php?m=log&c=manage||
+|admin|nav/nav/run|127.0.0.1|1488292192|/admin.php?m=nav&c=nav||
+|admin|config/config/run|127.0.0.1|1488292195|/admin.php?m=config&c=config||
+|admin|bbs/configbbs/run|127.0.0.1|1488292208|/admin.php?m=bbs&c=configbbs||
+|admin|bbs/article/run|127.0.0.1|1488292392|/admin.php?m=bbs&c=article||
+|admin|bbs/recycle/run|127.0.0.1|1488292394|/admin.php?m=bbs&c=recycle||
+|admin|bbs/recycle/reply|127.0.0.1|1488292398|/admin.php?m=bbs&c=recycle&a=reply||
+|admin|bbs/recycle/run|127.0.0.1|1488292407|/admin.php?m=bbs&c=recycle||
+|admin|bbs/article/replylist|127.0.0.1|1488292432|/admin.php?m=bbs&c=article&a=replylist||
+|admin|u/tag/run|127.0.0.1|1488292567|/admin.php?m=u&c=tag||
+|admin|bbs/configbbs/run|127.0.0.1|1488292568|/admin.php?m=bbs&c=configbbs||
+|admin|bbs/article/run|127.0.0.1|1488292569|/admin.php?m=bbs&c=article||
+|admin|bbs/article/run|127.0.0.1|1488292570|/admin.php?m=bbs&c=article||
+|admin|bbs/article/run|127.0.0.1|1488292571|/admin.php?m=bbs&c=article||
+|admin|bbs/article/replylist|127.0.0.1|1488292591|/admin.php?m=bbs&c=article&a=replylist||
+|admin|bbs/contentcheck/run|127.0.0.1|1488292595|/admin.php?m=bbs&c=contentcheck||
+|admin|u/tag/run|127.0.0.1|1488292600|/admin.php?m=u&c=tag||
+|admin|bbs/configbbs/run|127.0.0.1|1488292615|/admin.php?m=bbs&c=configbbs||
+|admin|bbs/setbbs/run|127.0.0.1|1488292624|/admin.php?m=bbs&c=setbbs||
+|admin|tag/manage/run|127.0.0.1|1488292647|/admin.php?m=tag&c=manage||
+|admin|tag/manage/category|127.0.0.1|1488292651|/admin.php?m=tag&c=manage&a=category||
+|admin|tag/manage/run|127.0.0.1|1488292653|/admin.php?m=tag&c=manage||
+|admin|nav/nav/run|127.0.0.1|1488292897|/admin.php?m=nav&c=nav||
+|admin|nav/nav/dorun|127.0.0.1|1488292926|/admin.php?m=nav&c=nav&a=dorun|data=array(1=array(navid=1, orderid=1, name=首页, link=index.php?m=tag)2=array(navid=2, orderid=2, name=论坛, link=index.php?m=bbs, isshow=1)3=array(navid=3, orderid=3, name=版块, link=index.php?m=bbs&c=forumlist)4=array(navid=4, orderid=4, name=喜欢, link=index.php?m=like&c=like, isshow=1)6=array(navid=6, orderid=5, name=话题, link=index.php?m=tag2)7=array(navid=7, orderid=6, name=应用, link=index.php?m=appcenter)5=array(navid=5, orderid=7, name=云平台, link=http://open.phpwind.com))home=1, navtype=main, csrf_token=83d0b17ded3997e7|
+|admin|nav/nav/run|127.0.0.1|1488292929|/admin.php?m=nav&c=nav||
+|admin|nav/nav/dorun|127.0.0.1|1488292953|/admin.php?m=nav&c=nav&a=dorun|data=array(1=array(navid=1, orderid=1, name=首页, link=index.php?m=tag, isshow=1)2=array(navid=2, orderid=2, name=论坛, link=index.php?m=bbs, isshow=1)3=array(navid=3, orderid=3, name=版块, link=index.php?m=bbs&c=forumlist)4=array(navid=4, orderid=4, name=喜欢, link=index.php?m=like&c=like, isshow=1)6=array(navid=6, orderid=5, name=话题, link=index.php?m=tag2)7=array(navid=7, orderid=6, name=应用, link=index.php?m=appcenter)5=array(navid=5, orderid=7, name=云平台, link=http://open.phpwind.com))home=1, navtype=main, csrf_token=83d0b17ded3997e7|
+|admin|nav/nav/run|127.0.0.1|1488292957|/admin.php?m=nav&c=nav||
+|admin|design/page/run|127.0.0.1|1488293137|/admin.php?m=design&c=page||
+|admin|design/permissions/page|127.0.0.1|1488293263|/admin.php?id=2&m=design&c=permissions&a=page||
+|admin|design/module/run|127.0.0.1|1488293385|/admin.php?pageid=6&m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488293392|/admin.php?pageid=2&m=design&c=module||
+|admin|design/data/run|127.0.0.1|1488293398|/admin.php?moduleid=2&m=design&c=data||
+|admin|design/data/push|127.0.0.1|1488293403|/admin.php?moduleid=2&m=design&c=data&a=push||
+|admin|design/property/edit|127.0.0.1|1488293405|/admin.php?moduleid=2&m=design&c=property&a=edit||
+|admin|design/property/doedit|127.0.0.1|1488293590|/admin.php?_json=1&m=design&c=property&a=doedit|model_type=bbs, model=tag, module_name=特别关注, property=array(tag_ids=, category_id=0, islogo=1, order=0, titlenum=0, limit=18, isblank=0)cache=array(expired=15, start_hour=0, start_minute=0, end_hour=0, end_minute=0)moduleid=2, csrf_token=83d0b17ded3997e7|
+|admin|design/property/edit|127.0.0.1|1488293592|/admin.php?moduleid=2&m=design&c=property&a=edit||
+|admin|design/page/run|127.0.0.1|1488293596|/admin.php?m=design&c=page||
+|admin|design/module/run|127.0.0.1|1488293601|/admin.php?pageid=2&m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488293611|/admin.php?m=design&c=module|moduleid=2, name=, model=, csrf_token=83d0b17ded3997e7|
+|admin|design/module/run|127.0.0.1|1488293614|/admin.php?m=design&c=module|moduleid=1, name=, model=, csrf_token=83d0b17ded3997e7|
+|admin|design/module/run|127.0.0.1|1488293618|/admin.php?m=design&c=module|moduleid=2, name=, model=, csrf_token=83d0b17ded3997e7|
+|admin|design/module/run|127.0.0.1|1488293624|/admin.php?m=design&c=module|moduleid=3, name=, model=, csrf_token=83d0b17ded3997e7|
+|admin|design/module/run|127.0.0.1|1488293628|/admin.php?m=design&c=module|moduleid=1, name=, model=, csrf_token=83d0b17ded3997e7|
+|admin|design/module/run|127.0.0.1|1488293712|/admin.php?m=design&c=module|moduleid=1, name=, model=, csrf_token=83d0b17ded3997e7|
+|admin|design/module/run|127.0.0.1|1488293718|/admin.php?m=design&c=module|moduleid=, name=, model=, csrf_token=83d0b17ded3997e7|
+|admin|design/component/run|127.0.0.1|1488293726|/admin.php?m=design&c=component||
+|admin|design/module/run|127.0.0.1|1488293727|/admin.php?m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488293730|/admin.php?m=design&c=module|moduleid=, name=, model=, csrf_token=83d0b17ded3997e7|
+|admin|design/data/run|127.0.0.1|1488293754|/admin.php?moduleid=1&m=design&c=data||
+|admin|design/property/edit|127.0.0.1|1488293756|/admin.php?moduleid=1&m=design&c=property&a=edit||
+|admin|design/property/doedit|127.0.0.1|1488293762|/admin.php?_json=1&m=design&c=property&a=doedit|model_type=bbs, model=thread, module_name=热门喜欢, property=array(tids=, usernames=, keywords=, isdigest=0, ispic=1, createdtime=0, posttime=0, order=5, ishighlight=0, titlenum=0, desnum=144, limit=100, timefmt=m-d, isblank=0)cache=array(expired=0, start_hour=0, start_minute=0, end_hour=0, end_minute=0)moduleid=1, csrf_token=83d0b17ded3997e7|
+|admin|design/property/edit|127.0.0.1|1488293764|/admin.php?moduleid=1&m=design&c=property&a=edit||
+|admin|design/module/run|127.0.0.1|1488293767|/admin.php?type=&m=design&c=module||
+|admin|design/page/run|127.0.0.1|1488293775|/admin.php?m=design&c=page||
+|admin|design/portal/run|127.0.0.1|1488293777|/admin.php?m=design&c=portal||
+|admin|design/module/run|127.0.0.1|1488293779|/admin.php?m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488293780|/admin.php?type=api&m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488293783|/admin.php?m=design&c=module|moduleid=, name=, model=, type=api, csrf_token=83d0b17ded3997e7|
+|admin|design/property/add1|127.0.0.1|1488293786|/admin.php?m=design&c=property&a=add1||
+|admin|design/property/add2|127.0.0.1|1488293792|/admin.php?m=design&c=property&a=add2|model=forum, csrf_token=83d0b17ded3997e7|
+|admin|design/module/run|127.0.0.1|1488293804|/admin.php?m=design&c=module||
+|admin|design/module/clear|127.0.0.1|1488294148|/admin.php?m=design&c=module&a=clear|csrf_token=83d0b17ded3997e7|
+|admin|design/module/run|127.0.0.1|1488294150|/admin.php?m=design&c=module||
+|admin|nav/nav/edit|127.0.0.1|1488294694|/admin.php?navid=6&type=main&m=nav&c=nav&a=edit||
+|admin|nav/nav/dorun|127.0.0.1|1488294775|/admin.php?m=nav&c=nav&a=dorun|data=array(1=array(navid=1, orderid=1, name=首页, link=index.php?m=tag, isshow=1)2=array(navid=2, orderid=2, name=论坛, link=index.php?m=bbs, isshow=1)3=array(navid=3, orderid=3, name=版块, link=index.php?m=bbs&c=forumlist)4=array(navid=4, orderid=4, name=喜欢, link=index.php?m=like&c=like, isshow=1)6=array(navid=6, orderid=5, name=我的关注, link=index.php?m=tag&a=my, isshow=1)7=array(navid=7, orderid=6, name=应用, link=index.php?m=appcenter)5=array(navid=5, orderid=7, name=云平台, link=http://open.phpwind.com))home=1, navtype=main, csrf_token=83d0b17ded3997e7|
+|admin|nav/nav/run|127.0.0.1|1488294779|/admin.php?m=nav&c=nav||
+|admin|tag/manage/category|127.0.0.1|1488295021|/admin.php?m=tag&c=manage&a=category||
+|admin|tag/manage/setCategory|127.0.0.1|1488295078|/admin.php?m=tag&c=manage&a=setCategory|newdata=array(1=array(vieworder=1, category_name=小编推荐, alias=)2=array(vieworder=2, category_name=今日头条, alias=))csrf_token=83d0b17ded3997e7|
+|admin|tag/manage/category|127.0.0.1|1488295081|/admin.php?m=tag&c=manage&a=category||
+|admin|tag/manage/run|127.0.0.1|1488295082|/admin.php?m=tag&c=manage||
+|admin|tag/manage/category|127.0.0.1|1488295084|/admin.php?m=tag&c=manage&a=category||
+|admin|tag/manage/editCategory|127.0.0.1|1488295089|/admin.php?id=1&m=tag&c=manage&a=editCategory||
+|admin|tag/manage/run|127.0.0.1|1488295096|/admin.php?categoryId=1&m=tag&c=manage||
+|admin|tag/manage/category|127.0.0.1|1488295126|/admin.php?m=tag&c=manage&a=category||
+|admin|tag/manage/setCategory|127.0.0.1|1488295166|/admin.php?m=tag&c=manage&a=setCategory|data=array(1=array(category_id=1, vieworder=1, category_name=新闻, alias=)2=array(category_id=2, vieworder=2, category_name=数据采集, alias=))csrf_token=83d0b17ded3997e7|
+|admin|tag/manage/category|127.0.0.1|1488295169|/admin.php?m=tag&c=manage&a=category||
+|admin|tag/manage/run|127.0.0.1|1488295170|/admin.php?m=tag&c=manage||
+|admin|tag/manage/add|127.0.0.1|1488295206|/admin.php?m=tag&c=manage&a=add||
+|admin|tag/manage/doadd|127.0.0.1|1488295225|/admin.php?_json=1&m=tag&c=manage&a=doadd|tag=array(name=今日头条, category=array(0=1)relate_tags=, excerpt=, seo_title=, seo_description=, seo_keywords=)icon=, csrf_token=83d0b17ded3997e7|
+|admin|tag/manage/run|127.0.0.1|1488295228|/admin.php?m=tag&c=manage||
+|admin|tag/manage/edit|127.0.0.1|1488295246|/admin.php?id=1&m=tag&c=manage&a=edit||
+|admin|design/page/run|127.0.0.1|1488295365|/admin.php?m=design&c=page||
+|admin|design/portal/run|127.0.0.1|1488295374|/admin.php?m=design&c=portal||
+|admin|design/page/run|127.0.0.1|1488295376|/admin.php?m=design&c=page||
+|admin|design/module/run|127.0.0.1|1488295431|/admin.php?m=design&c=module||
