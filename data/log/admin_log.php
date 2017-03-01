@@ -148,3 +148,95 @@
 |admin|design/portal/run|127.0.0.1|1488295374|/admin.php?m=design&c=portal||
 |admin|design/page/run|127.0.0.1|1488295376|/admin.php?m=design&c=page||
 |admin|design/module/run|127.0.0.1|1488295431|/admin.php?m=design&c=module||
+|admin|Login Successful|127.0.0.1|1488374961|/admin.php?a=login|username=admin, password=***, submit=, csrf_token=c65465c7a36fdb65|
+|admin|design/page/run|127.0.0.1|1488375008|/admin.php?m=design&c=page||
+|admin|Login Successful|127.0.0.1|1488378065|/admin.php?a=login|username=admin, password=***, submit=, csrf_token=c65465c7a36fdb65|
+|admin|design/page/run|127.0.0.1|1488378112|/admin.php?m=design&c=page||
+|admin|design/portal/run|127.0.0.1|1488378128|/admin.php?m=design&c=portal||
+|admin|design/page/run|127.0.0.1|1488378210|/admin.php?m=design&c=page||
+|admin|design/portal/run|127.0.0.1|1488378223|/admin.php?m=design&c=portal||
+|admin|design/page/run|127.0.0.1|1488378293|/admin.php?m=design&c=page||
+|admin|design/portal/run|127.0.0.1|1488378355|/admin.php?m=design&c=portal||
+|admin|design/page/run|127.0.0.1|1488378357|/admin.php?m=design&c=page||
+|admin|design/portal/run|127.0.0.1|1488378366|/admin.php?m=design&c=portal||
+|admin|design/page/run|127.0.0.1|1488378368|/admin.php?m=design&c=page||
+|admin|design/portal/run|127.0.0.1|1488378375|/admin.php?m=design&c=portal||
+|admin|design/page/run|127.0.0.1|1488378420|/admin.php?m=design&c=page||
+|admin|design/portal/run|127.0.0.1|1488378422|/admin.php?m=design&c=portal||
+|admin|design/page/run|127.0.0.1|1488378425|/admin.php?m=design&c=page||
+|admin|design/portal/run|127.0.0.1|1488378799|/admin.php?m=design&c=portal||
+|admin|design/page/run|127.0.0.1|1488378803|/admin.php?m=design&c=page||
+|admin|design/portal/run|127.0.0.1|1488378818|/admin.php?m=design&c=portal||
+|admin|design/page/run|127.0.0.1|1488378821|/admin.php?m=design&c=page||
+|admin|design/permissions/page|127.0.0.1|1488378824|/admin.php?id=1&m=design&c=permissions&a=page||
+|admin|design/permissions/doedit|127.0.0.1|1488378871|/admin.php?m=design&c=permissions&a=doedit|all=1, new_username=array(tmp_1=admin)new_permissions=array(tmp_1=1)design_type=1, design_id=1, csrf_token=c65465c7a36fdb65|
+|admin|design/permissions/page|127.0.0.1|1488378874|/admin.php?id=1&m=design&c=permissions&a=page||
+|admin|design/permissions/view|127.0.0.1|1488378890|/admin.php?uid=1&m=design&c=permissions&a=view||
+|admin|design/permissions/run|127.0.0.1|1488378901|/admin.php?m=design&c=permissions||
+|admin|design/permissions/view|127.0.0.1|1488378910|/admin.php?uid=1&m=design&c=permissions&a=view||
+|admin|design/permissions/run|127.0.0.1|1488378913|/admin.php?m=design&c=permissions||
+|admin|design/page/run|127.0.0.1|1488378917|/admin.php?m=design&c=page||
+|admin|design/permissions/page|127.0.0.1|1488378924|/admin.php?id=1&m=design&c=permissions&a=page||
+|admin|design/permissions/delete|127.0.0.1|1488378928|/admin.php?m=design&c=permissions&a=delete|csrf_token=c65465c7a36fdb65, id=1|
+|admin|design/permissions/page|127.0.0.1|1488378929|/admin.php?id=1&m=design&c=permissions&a=page||
+|admin|design/page/run|127.0.0.1|1488378935|/admin.php?m=design&c=page||
+|admin|design/module/run|127.0.0.1|1488378982|/admin.php?pageid=1&m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488379023|/admin.php?type=api&m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488379029|/admin.php?m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488379041|/admin.php?type=api&m=design&c=module||
+|admin|design/property/add1|127.0.0.1|1488379046|/admin.php?m=design&c=property&a=add1||
+|admin|design/property/add2|127.0.0.1|1488379058|/admin.php?m=design&c=property&a=add2|model=tag, csrf_token=c65465c7a36fdb65|
+|admin|design/property/doadd|127.0.0.1|1488379086|/admin.php?_json=1&m=design&c=property&a=doadd|module_name=今日头条, property=array(tag_ids=, category_id=0, islogo=0, order=0, titlenum=, limit=, isblank=0)cache=array(expired=15, start_hour=, start_minute=, end_hour=, end_minute=)model=tag, csrf_token=c65465c7a36fdb65|
+|admin|design/template/edit|127.0.0.1|1488379089|/admin.php?isscript=1&moduleid=3&m=design&c=template&a=edit||
+|admin|design/module/run|127.0.0.1|1488379106|/admin.php?type=api&m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488379110|/admin.php?m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488379115|/admin.php?m=design&c=module|moduleid=, name=, model=, csrf_token=c65465c7a36fdb65|
+|admin|design/module/run|127.0.0.1|1488379117|/admin.php?m=design&c=module|moduleid=, name=, model=, csrf_token=c65465c7a36fdb65|
+|admin|design/module/run|127.0.0.1|1488379119|/admin.php?m=design&c=module|moduleid=, name=, model=, csrf_token=c65465c7a36fdb65|
+|admin|design/page/run|127.0.0.1|1488379121|/admin.php?m=design&c=page||
+|admin|design/module/run|127.0.0.1|1488379127|/admin.php?pageid=1&m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488379137|/admin.php?m=design&c=module|moduleid=3, name=, model=, csrf_token=c65465c7a36fdb65|
+|admin|design/module/run|127.0.0.1|1488379147|/admin.php?m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488379151|/admin.php?type=api&m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488379154|/admin.php?m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488379160|/admin.php?type=api&m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488379163|/admin.php?m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488379166|/admin.php?type=api&m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488379171|/admin.php?m=design&c=module|moduleid=2, name=, model=, type=api, csrf_token=c65465c7a36fdb65|
+|admin|design/module/run|127.0.0.1|1488379177|/admin.php?m=design&c=module|moduleid=1, name=, model=, type=api, csrf_token=c65465c7a36fdb65|
+|admin|design/module/run|127.0.0.1|1488379184|/admin.php?m=design&c=module|moduleid=3, name=, model=, type=api, csrf_token=c65465c7a36fdb65|
+|admin|design/module/script|127.0.0.1|1488379189|/admin.php?moduleid=3&m=design&c=module&a=script||
+|admin|design/module/run|127.0.0.1|1488379206|/admin.php?type=api&m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488379214|/admin.php?m=design&c=module||
+|admin|design/push/run|127.0.0.1|1488379235|/admin.php?m=design&c=push||
+|admin|design/push/status|127.0.0.1|1488379238|/admin.php?status=1&m=design&c=push&a=status||
+|admin|design/push/status|127.0.0.1|1488379240|/admin.php?status=2&m=design&c=push&a=status||
+|admin|design/push/shield|127.0.0.1|1488379241|/admin.php?m=design&c=push&a=shield||
+|admin|design/push/run|127.0.0.1|1488379244|/admin.php?m=design&c=push||
+|admin|design/permissions/run|127.0.0.1|1488379246|/admin.php?m=design&c=permissions||
+|admin|design/push/run|127.0.0.1|1488379254|/admin.php?m=design&c=push||
+|admin|design/page/run|127.0.0.1|1488379256|/admin.php?m=design&c=page||
+|admin|design/permissions/page|127.0.0.1|1488379299|/admin.php?id=1&m=design&c=permissions&a=page||
+|admin|design/page/run|127.0.0.1|1488379516|/admin.php?m=design&c=page||
+|admin|design/component/run|127.0.0.1|1488379517|/admin.php?m=design&c=component||
+|admin|design/page/run|127.0.0.1|1488379518|/admin.php?m=design&c=page||
+|admin|design/page/run|127.0.0.1|1488379565|/admin.php?m=design&c=page||
+|admin|design/component/run|127.0.0.1|1488379582|/admin.php?m=design&c=component||
+|admin|design/module/run|127.0.0.1|1488379587|/admin.php?m=design&c=module||
+|admin|design/permissions/module|127.0.0.1|1488379601|/admin.php?moduleid=4&m=design&c=permissions&a=module||
+|admin|design/module/run|127.0.0.1|1488379611|/admin.php?type=api&m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488379625|/admin.php?m=design&c=module||
+|admin|design/permissions/module|127.0.0.1|1488379648|/admin.php?moduleid=4&m=design&c=permissions&a=module||
+|admin|design/data/run|127.0.0.1|1488379654|/admin.php?moduleid=4&m=design&c=data||
+|admin|design/data/edit|127.0.0.1|1488379669|/admin.php?dataid=3&moduleid=4&m=design&c=data&a=edit||
+|admin|design/data/push|127.0.0.1|1488379694|/admin.php?moduleid=4&m=design&c=data&a=push||
+|admin|design/property/edit|127.0.0.1|1488379697|/admin.php?moduleid=4&m=design&c=property&a=edit||
+|admin|design/template/edit|127.0.0.1|1488379700|/admin.php?moduleid=4&m=design&c=template&a=edit||
+|admin|design/module/run|127.0.0.1|1488379705|/admin.php?type=&m=design&c=module||
+|admin|design/module/clear|127.0.0.1|1488379709|/admin.php?m=design&c=module&a=clear|csrf_token=c65465c7a36fdb65|
+|admin|design/module/run|127.0.0.1|1488379711|/admin.php?type=&m=design&c=module||
+|admin|design/module/clear|127.0.0.1|1488379753|/admin.php?m=design&c=module&a=clear|csrf_token=c65465c7a36fdb65|
+|admin|design/module/run|127.0.0.1|1488379756|/admin.php?type=&m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488379757|/admin.php?m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488379761|/admin.php?type=api&m=design&c=module||
+|admin|design/module/run|127.0.0.1|1488379765|/admin.php?m=design&c=module||

@@ -60,20 +60,10 @@ if ($loginUser->isExists()) {
 <?php
 PwHook::display(array(PwSimpleHook::getInstance("head"), "runDo"), array(), "", $__viewer);
 ?>
-<link href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/default/css'.Wekit::getGlobal('theme','debug'); ?>/forum.css?v=<?php echo htmlspecialchars(NEXT_RELEASE, ENT_QUOTES, 'UTF-8');?>" rel="stylesheet" />
+<link href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/default/css'.Wekit::getGlobal('theme','debug'); ?>/tag.css?v=<?php echo htmlspecialchars(NEXT_RELEASE, ENT_QUOTES, 'UTF-8');?>" rel="stylesheet" />
 </head>
 <body>
-<style type="text/css">
-</style><?php  
-    			$__design_pageid = 3;
-    			Wind::import("SRV:design.bo.PwDesignPageBo");
-    			$__design = new PwDesignPageBo();
-    			$__design_data = $__design->getDataByModules(array());
-    			
-  
-			$loginUser = Wekit::getLoginUser();
-	   	 	$designPermission = $loginUser->getPermission('design_allow_manage.push');
-	    	if ($designPermission > 0){?><form method="post" action=""><button class="design_mode_edit" type="submit">模块管理</button><input type="hidden" name="design" value="1"><input type="hidden" name="csrf_token" value="<?php echo WindSecurity::escapeHTML(Wind::getComponent('windToken')->saveToken('csrf_token')); ?>"/></form><?php  } ?>
+
 <div class="wrap">
 <?php if ($site_info_notice = Wekit::C('site','info.notice')) {?>
 <style>.header_wrap{top:29px;}body{padding-top:75px;}</style><div id="notice"><?php echo htmlspecialchars($site_info_notice, ENT_QUOTES, 'UTF-8');?></div>
@@ -120,7 +110,7 @@ PwHook::display(array(PwSimpleHook::getInstance("header_nav"), "runDo"), array()
 			<form action="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=search&c=s'; ?>" method="post">
 				<input type="text" id="s" aria-label="搜索关键词" accesskey="s" placeholder="搜索其实很简单" x-webkit-speech speech name="keyword"/>
 				<button type="submit" aria-label="搜索"><span>搜索</span></button>
-			<input type="hidden" name="csrf_token" value="<?php echo WindSecurity::escapeHTML(Wind::getComponent('windToken')->saveToken('csrf_token')); ?>"/><input type="hidden" name="csrf_token" value="<?php echo WindSecurity::escapeHTML(Wind::getComponent('windToken')->saveToken('csrf_token')); ?>"/></form>
+			<input type="hidden" name="csrf_token" value="<?php echo WindSecurity::escapeHTML(Wind::getComponent('windToken')->saveToken('csrf_token')); ?>"/></form>
 		</div>
 		<?php  if (!$loginUser->isExists()) { ?>
 <div class="header_login">
@@ -256,114 +246,65 @@ foreach ($child as $ck => $cv) {
 <?php }} ?>
 <div class="tac"> </div>
 	<div class="main_wrap">
-		
-		<div class="bread_crumb" id="bread_crumb">
-			<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/',''; ?>" class="home" title="<?php echo Wekit::C("site", "info.name"); ?>">首页</a><em>&gt;</em><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/',''; ?>">本站新帖</a>
+		<pw-tpl id="main_segment"/>
+		<div class="bread_crumb">
+			<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/',''; ?>" class="home" title="<?php echo Wekit::C("site", "info.name"); ?>">首页</a><em>&gt;</em><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag'; ?>">话题</a><em>&gt;</em><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&name=', rawurlencode($tag['tag_name']); ?>"><?php echo htmlspecialchars($tag['tag_name'], ENT_QUOTES, 'UTF-8');?></a>
 		</div>
-		
-		<div id="cloudwind_forum_top"></div>
+		<pw-tpl id="myTagPage_segment"/>
 		<div class="main cc">
 			<div class="main_body">
-				<div class="main_content cc">
-					
-					 
-					<div class="box_wrap thread_page J_check_wrap">
-						<nav>
-							<div class="content_nav" id="hashpos_ttype">
-								<div class="content_filter"><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?order=postdate'; ?>" class="<?php echo htmlspecialchars(Pw::isCurrent($order == 'postdate'), ENT_QUOTES, 'UTF-8');?>">最新发帖</a><span>|</span><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?order=lastpost'; ?>" class="<?php echo htmlspecialchars(Pw::isCurrent($order != 'postdate'), ENT_QUOTES, 'UTF-8');?>">最后回复</a></div>
-								<ul>
-									<li class="current"><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?order=lastpost'; ?>">本站新帖</a></li>
-									<?php  if ($loginUser->isExists()) { ?><li><a rel="nofollow" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=forum&a=my'; ?>">我的版块</a></li><?php  } ?>
-								</ul>
-							</div>
-						</nav>
-						<!--公告-->
-						<?php $__tpl_data = call_user_func_array(
-								array(Wekit::load("SRV:announce.srv.PwAnnounceService"), 
-								"getAnnounceForBbsScroll"), 
-								array(array())); 
-  if($__tpl_data){ ?>
-<div class="core_announce_wrap">
-	<div class="core_announce">
-		<ul class="J_slide_auto cc">
-		<?php  foreach($__tpl_data as $key => $value){ 
-		 if($value['typeid']){
-		 	$url = $value['url']; 
-		 	$showTarget = 'target=_blank';
-		 }else{
-		 	$url = WindUrlHelper::createUrl('announce/index/run',array('aid'=>$key)); 
-		 	$showTarget='target=_self';
-		 }
-		 ?>
-		 <li><a href="<?php echo htmlspecialchars($url, ENT_QUOTES, 'UTF-8');?>" <?php echo htmlspecialchars($showTarget, ENT_QUOTES, 'UTF-8');?>><?php echo htmlspecialchars($value['subject'], ENT_QUOTES, 'UTF-8');?></a><span><?php echo htmlspecialchars($value['start_date'], ENT_QUOTES, 'UTF-8');?></span></li>
-		 <?php 
-		 } ?>
-		</ul>
-	</div>
-</div>
-<?php  } 
-  ?>
-						<!--公告结束-->
-						<?php  if ($threaddb) { ?>
-						<div class="thread_posts_list">
-							<table width="100%" id="J_posts_list" summary="帖子列表">
-								<?php  foreach ($threaddb as $key => $value) { ?>
-								<tr>
-									<td class="author"><a class="J_user_card_show" data-uid="<?php echo htmlspecialchars($value['created_userid'], ENT_QUOTES, 'UTF-8');?>" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=space&uid=', rawurlencode($value['created_userid']); ?>"><img src="<?php echo htmlspecialchars(Pw::getAvatar($value['created_userid'], 'small'), ENT_QUOTES, 'UTF-8');?>" onerror="this.onerror=null;this.src='<?php echo htmlspecialchars(Wind::getComponent('response')->getData('G','url','images'), ENT_QUOTES, 'UTF-8');?>/face/face_small.jpg'" width="45" height="45" alt="<?php echo htmlspecialchars($value['created_username'], ENT_QUOTES, 'UTF-8');?>" /></a></td>
-									<td class="subject">
-										<p class="title">
-											<?php  if ($operateThread) { ?>
-											<input class="J_check" name="" type="checkbox" value="<?php echo htmlspecialchars($value['tid'], ENT_QUOTES, 'UTF-8');?>" />
-											<?php  } ?>
-											<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','read.php?tid=', rawurlencode($value['tid']),'&fid=', rawurlencode($value['fid']); ?>" target="_blank"><span class="posts_icon"><i class="icon_<?php echo htmlspecialchars($value['icon'], ENT_QUOTES, 'UTF-8');?>" title="<?php echo htmlspecialchars($icon[$value['icon']], ENT_QUOTES, 'UTF-8');?>  新窗口打开"></i></span></a>
-											<?php  if ($forums[$value['fid']]) { ?>
-											<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=thread&fid=', rawurlencode($value['fid']); ?>" class="st">[<?php echo $forums[$value['fid']]['name'];?>]</a>
-											<?php  } ?>
-											<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','read.php?tid=', rawurlencode($value['tid']),'&fid=', rawurlencode($value['fid']); ?>" class="st" style="<?php echo htmlspecialchars($value['highlight_style'], ENT_QUOTES, 'UTF-8');?>" title="<?php echo htmlspecialchars($value['subject'], ENT_QUOTES, 'UTF-8');?>"><?php echo htmlspecialchars(Pw::substrs($value['subject'],$numofthreadtitle), ENT_QUOTES, 'UTF-8');?></a>
-											<?php
-PwHook::display(array($threadList, "runDo"), array('createHtmlAfterSubject',$value), "", $__viewer);
-
-  if ($value['ifupload']) { ?><span class="posts_icon"><i class="icon_<?php echo htmlspecialchars($uploadIcon[$value['ifupload']], ENT_QUOTES, 'UTF-8');?>" title="<?php echo htmlspecialchars($icon[$uploadIcon[$value['ifupload']]], ENT_QUOTES, 'UTF-8');?>"></i></span><?php  } ?>
-										</p>
-										<p class="info">
-											楼主：<a class="J_user_card_show" data-uid="<?php echo htmlspecialchars($value['created_userid'], ENT_QUOTES, 'UTF-8');?>" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=space&uid=', rawurlencode($value['created_userid']); ?>"><?php echo htmlspecialchars($value['created_username'], ENT_QUOTES, 'UTF-8');?></a><span><?php  echo Pw::time2str($value['created_time'], 'Y-m-d');?></span>
-											最后回复：<a class="J_user_card_show" data-uid="<?php echo htmlspecialchars($value['lastpost_userid'], ENT_QUOTES, 'UTF-8');?>" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=space&uid=', rawurlencode($value['lastpost_userid']); ?>"><?php echo htmlspecialchars($value['lastpost_username'], ENT_QUOTES, 'UTF-8');?></a><span><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','read.php?tid=', rawurlencode($value['tid']),'&fid=', rawurlencode($value['fid']),'&page=e'; ?>#a" rel="nofollow" aria-label="最后回复时间"><?php  echo Pw::time2str($value['lastpost_time'], 'm-d H:i');?></a></span>
-										</p>
-									</td>
-									<td class="num">
-										<span>回复<em><?php echo htmlspecialchars($value['replies'], ENT_QUOTES, 'UTF-8');?></em></span>
-										<span>浏览<em><?php echo htmlspecialchars($value['hits'], ENT_QUOTES, 'UTF-8');?></em></span>
-									</td>
-								</tr>
-								<?php  } ?>
-							</table>
-						</div>
-						<?php  if ($operateThread) { ?>
-						<div class="management J_post_manage_col" data-role="list">
-							<label class="mr10"><input class="J_check_all" type="checkbox">全选</label>
-							<?php  if ($operateThread['topped']){ ?><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=topped'; ?>">置顶</a><?php  } 
-  if ($operateThread['digest']){ ?><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=digest'; ?>">精华</a><?php  } 
-  if ($operateThread['highlight']){ ?><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=highlight'; ?>">加亮</a><?php  } 
-  if ($operateThread['up']){ ?><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=up'; ?>">提前</a><?php  } 
-  if ($operateThread['type']){ ?><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=type'; ?>">分类</a><?php  } 
-  if ($operateThread['move']){ ?><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=move'; ?>">移动</a><?php  } 
-  if ($operateThread['copy']){ ?><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=copy'; ?>">复制</a><?php  } 
-  if ($operateThread['unite']){ ?><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=unite'; ?>">合并</a><?php  } 
-  if ($operateThread['lock']){ ?><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=lock'; ?>">锁定</a><?php  } 
-  if ($operateThread['down']){ ?><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=down'; ?>">压帖</a><?php  } 
-  if ($operateThread['delete']){ ?><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=delete'; ?>">删除</a><?php  } ?>
-						</div>
-						<?php  } 
-  } else { ?>
-						<div class="not_content">
-							啊哦，本站暂没有任何内容哦！
-						</div>
+				<div class="main_content">
+					<div class="box_wrap tag_info_box cc">
+						<div class="banner"><img src="<?php echo htmlspecialchars(Pw::getPath($tag['tag_logo']), ENT_QUOTES, 'UTF-8');?>" width="110" alt="<?php echo htmlspecialchars($tag['tag_name'], ENT_QUOTES, 'UTF-8');?>" onerror="this.onerror=null;this.src='<?php echo Wind::getComponent('response')->getData('G', 'url', 'themes').'/site/default/images'; ?>/tags/default.png'"/></div>
+						<div class="name"><h3><?php echo htmlspecialchars($tag['tag_name'], ENT_QUOTES, 'UTF-8');?></h3>
+						<?php  if (!$tag['attention']) { ?>
+						<a rel="nofollow" id="J_follow_btn" data-type="add" data-id="<?php echo htmlspecialchars($tag['tag_id'], ENT_QUOTES, 'UTF-8');?>" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=attention&id=', rawurlencode($tag['tag_id']),'&type=add'; ?>" class="core_follow J_qlogin_trigger">关注该话题</a>
+						<?php  } else { ?>
+						<a rel="nofollow" id="J_follow_btn" data-type="del" data-id="<?php echo htmlspecialchars($tag['tag_id'], ENT_QUOTES, 'UTF-8');?>" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=attention&id=', rawurlencode($tag['tag_id']),'&type=del'; ?>" class="core_unfollow J_qlogin_trigger">取消关注</a>
 						<?php  } ?>
+						</div>
+						<div class="num">
+							<ul class="cc">
+								<li>帖子：<em><?php echo htmlspecialchars($tag['content_count'], ENT_QUOTES, 'UTF-8');?></em></li>
+								<li>被关注：<em id="J_follow_count"><?php echo htmlspecialchars($tag['attention_count'], ENT_QUOTES, 'UTF-8');?></em></li>
+							</ul>
+						</div>
+						<div class="notice">
+						<?php  $subExcerpt = Pw::substrs($tag['excerpt'], 170); ?>
+							<span id="J_tag_excerpt_part"><?php echo htmlspecialchars($subExcerpt, ENT_QUOTES, 'UTF-8');?></span>
+							<span style="display:none;" id="J_tag_excerpt_all"><?php echo htmlspecialchars($tag['excerpt'], ENT_QUOTES, 'UTF-8');?></span>
+							<?php  if ($tag['excerpt'] != $subExcerpt) { ?>
+							<a href="#" id="J_show_more" data-type="open" class="more s4">阅读全部&darr;</a>
+							<?php  } ?>
+						</div>
 					</div>
-					<div class="J_page_wrap cc" data-key="true">
-						<?php $__tplPageCount=(int)$count;
+					<div class="box_wrap tag_page_view">
+						<div class="content_nav">
+							<ul class="cc">
+							<?php  $thread_current = !$args['type'] ?  "class='current'" : '';
+									$user_current = ($args['type'] == 'users') ?  "class='current'" : '';
+							?>
+								<li <?php echo $thread_current;?>><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&name=', rawurlencode($tag['tag_name']); ?>">最新帖子</a></li>
+								<li <?php echo $user_current;?>><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&name=', rawurlencode($tag['tag_name']),'&type=users'; ?>">会员</a></li>
+							</ul>
+						</div>
+						<div class="">
+					<?php  if ($args['type'] == 'users') { 
+  if ($users) { ?>
+						<div class="tag_uesr_list">
+							<ul class="cc">
+								<?php  foreach ($users as $u) { ?>
+								<li>
+									<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=space&uid=', rawurlencode($u['uid']); ?>" class="J_user_card_show" data-uid="<?php echo htmlspecialchars($u['uid'], ENT_QUOTES, 'UTF-8');?>"><img class="J_avatar" src="<?php echo htmlspecialchars(Pw::getAvatar($u['uid'], 'middle'), ENT_QUOTES, 'UTF-8');?>" data-type="middle" width="100" height="100" alt="<?php echo htmlspecialchars($u['username'], ENT_QUOTES, 'UTF-8');?>" /></a>
+									<p><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=space&uid=', rawurlencode($u['uid']); ?>" class="J_user_card_show" data-uid="<?php echo htmlspecialchars($u['uid'], ENT_QUOTES, 'UTF-8');?>"><?php echo htmlspecialchars($u['username'], ENT_QUOTES, 'UTF-8');?></a></p>
+								</li>
+								<?php  } ?>
+							</ul>
+						</div>
+						<div class="tac">
+							<?php $__tplPageCount=(int)$count;
 $__tplPagePer=(int)$perpage;
-$__tplPageTotal=(int)$totalpage;
+$__tplPageTotal=(int)0;
 $__tplPageCurrent=(int)$page;
 if($__tplPageCount > 0 && $__tplPagePer > 0){
 $__tmp = ceil($__tplPageCount / $__tplPagePer);
@@ -378,69 +319,140 @@ $_page_max = min($__tplPageTotal, $__tplPageCurrent+3);
 <?php  if ($__tplPageCurrent > $_page_min) { 
 	$_page_i = $__tplPageCurrent-1;
 ?>
-	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?page=', rawurlencode($_page_i); 
- echo htmlspecialchars($urlargs ? '&' . http_build_query($urlargs) : '', ENT_QUOTES, 'UTF-8');?>" class="pages_pre J_pages_pre">&laquo;&nbsp;上一页</a>
+	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&page=', rawurlencode($_page_i); 
+ echo htmlspecialchars($args ? '&' . http_build_query($args) : '', ENT_QUOTES, 'UTF-8');?>" class="pages_pre J_pages_pre">&laquo;&nbsp;上一页</a>
 	<?php  if ($_page_min > 1) { 
 		$_page_i = 1;		
 	?>
-	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?page=', rawurlencode($_page_i); 
- echo htmlspecialchars($urlargs ? '&' . http_build_query($urlargs) : '', ENT_QUOTES, 'UTF-8');?>">1...</a>
+	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&page=', rawurlencode($_page_i); 
+ echo htmlspecialchars($args ? '&' . http_build_query($args) : '', ENT_QUOTES, 'UTF-8');?>">1...</a>
 	<?php  } 
   for ($_page_i = $_page_min; $_page_i < $__tplPageCurrent; $_page_i++) { 
 	?>
-	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?page=', rawurlencode($_page_i); 
- echo htmlspecialchars($urlargs ? '&' . http_build_query($urlargs) : '', ENT_QUOTES, 'UTF-8');?>"><?php echo htmlspecialchars($_page_i, ENT_QUOTES, 'UTF-8');?></a>
+	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&page=', rawurlencode($_page_i); 
+ echo htmlspecialchars($args ? '&' . http_build_query($args) : '', ENT_QUOTES, 'UTF-8');?>"><?php echo htmlspecialchars($_page_i, ENT_QUOTES, 'UTF-8');?></a>
 	<?php  } 
   } ?>
 	<strong><?php echo htmlspecialchars($__tplPageCurrent, ENT_QUOTES, 'UTF-8');?></strong>
 <?php  if ($__tplPageCurrent < $_page_max) { 
   for ($_page_i = $__tplPageCurrent+1; $_page_i <= $_page_max; $_page_i++) { 
 	?>
-	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?page=', rawurlencode($_page_i); 
- echo htmlspecialchars($urlargs ? '&' . http_build_query($urlargs) : '', ENT_QUOTES, 'UTF-8');?>"><?php echo htmlspecialchars($_page_i, ENT_QUOTES, 'UTF-8');?></a>
+	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&page=', rawurlencode($_page_i); 
+ echo htmlspecialchars($args ? '&' . http_build_query($args) : '', ENT_QUOTES, 'UTF-8');?>"><?php echo htmlspecialchars($_page_i, ENT_QUOTES, 'UTF-8');?></a>
 	<?php  } 
   if ($_page_max < $__tplPageTotal) { 
 		$_page_i = $__tplPageTotal;
 	?>
-	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?page=', rawurlencode($_page_i); 
- echo htmlspecialchars($urlargs ? '&' . http_build_query($urlargs) : '', ENT_QUOTES, 'UTF-8');?>">...<?php echo htmlspecialchars($__tplPageTotal, ENT_QUOTES, 'UTF-8');?></a>
+	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&page=', rawurlencode($_page_i); 
+ echo htmlspecialchars($args ? '&' . http_build_query($args) : '', ENT_QUOTES, 'UTF-8');?>">...<?php echo htmlspecialchars($__tplPageTotal, ENT_QUOTES, 'UTF-8');?></a>
 	<?php  }
 		$_page_i = $__tplPageCurrent+1;
 	?>
-	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?page=', rawurlencode($_page_i); 
- echo htmlspecialchars($urlargs ? '&' . http_build_query($urlargs) : '', ENT_QUOTES, 'UTF-8');?>" class="pages_next J_pages_next">下一页&nbsp;&raquo;</a>
+	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&page=', rawurlencode($_page_i); 
+ echo htmlspecialchars($args ? '&' . http_build_query($args) : '', ENT_QUOTES, 'UTF-8');?>" class="pages_next J_pages_next">下一页&nbsp;&raquo;</a>
 <?php  } ?>
 </div>
 <?php } ?>
-					</div>
-					
-					<?php  if ($operateThread) { ?>
-					<div id="J_post_manage_main" class="core_pop_wrap J_post_manage_pop" style="display:none;">
-						<div class="core_pop">
-							<div style="width:415px;">
-								<div class="pop_top"><a href="#" id="J_post_manage_close" class="pop_close">关闭</a><strong>帖子操作</strong>(已选中&nbsp;<span class="red" id="J_post_checked_count">1</span>&nbsp;篇&nbsp;&nbsp;<a href="" class="s4" id="J_post_manage_checkall" data-type="check">全选</a>)</div>
-								<div class="pop_cont">
-									<div class="pop_operat_list">
-										<ul class="cc">
-											<?php  if ($operateThread['topped']){ ?><li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=topped'; ?>">置顶</a></li><?php  } 
-  if ($operateThread['digest']){ ?><li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=digest'; ?>">精华</a></li><?php  } 
-  if ($operateThread['highlight']){ ?><li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=highlight'; ?>">加亮</a></li><?php  } 
-  if ($operateThread['up']){ ?><li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=up'; ?>">提前</a></li><?php  } 
-  if ($operateThread['type']){ ?><li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=type'; ?>">分类</a></li><?php  } 
-  if ($operateThread['move']){ ?><li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=move'; ?>">移动</a></li><?php  } 
-  if ($operateThread['copy']){ ?><li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=copy'; ?>">复制</a></li><?php  } 
-  if ($operateThread['unite']){ ?><li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=unite'; ?>">合并</a></li><?php  } 
-  if ($operateThread['lock']){ ?><li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=lock'; ?>">锁定</a></li><?php  } 
-  if ($operateThread['down']){ ?><li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=down'; ?>">压帖</a></li><?php  } 
-  if ($operateThread['delete']){ ?><li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=manage&a=delete'; ?>">删除</a></li><?php  } ?>
-										</ul>
+						</div>
+						<?php  } else { ?>
+						<div class="not_content">
+							<p>啊哦，暂没有会员关注该话题哦，我来<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=attention&id=', rawurlencode($tag['tag_id']),'&type=add'; ?>" id="J_none_follow" class="J_qlogin_trigger">关注一下</a>！</p>
+						</div>
+						<?php  } 
+  } else { 
+  if ($contents) { ?>
+						<div class="tag_lists_wrap" id="J_tag_feed_lists">
+							<?php  foreach ($contents as $key => $value) { 
+								if (!$value['content']) continue;
+							?>
+							<dl class="cc">
+								<dt class="face"><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=space&uid=', rawurlencode($value['created_userid']); ?>" class="J_user_card_show" data-uid="<?php echo htmlspecialchars($value['created_userid'], ENT_QUOTES, 'UTF-8');?>"><img class="J_avatar" src="<?php echo htmlspecialchars(Pw::getAvatar($value['created_userid'], 'small'), ENT_QUOTES, 'UTF-8');?>" data-type="small" width="50" height="50" alt="<?php echo htmlspecialchars($value['created_username'], ENT_QUOTES, 'UTF-8');?>" /></a></dt>
+								<dd class="text_content">
+									<?php  if ($allowManage) { 
+  if ($value['tagifcheck']) { ?>
+									<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=doshield&id=', rawurlencode($tag['tag_id']),'&type_id=', rawurlencode($value['type_id']),'&param_id=', rawurlencode($value['param_id']),'&ifcheck=0'; ?>" class="shield J_tag_shield" title="将该帖移出这个话题">屏蔽</a>
+										<?php  } else { ?>
+									<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=doshield&id=', rawurlencode($tag['tag_id']),'&type_id=', rawurlencode($value['type_id']),'&param_id=', rawurlencode($value['param_id']),'&ifcheck=1'; ?>" class="shield J_tag_shield" title="取消屏蔽">取消屏蔽</a>
+										<?php  } 
+  } ?>
+									<div class="content">
+										<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=space&uid=', rawurlencode($value['created_userid']); ?>" class="name J_user_card_show" data-uid="<?php echo htmlspecialchars($value['created_userid'], ENT_QUOTES, 'UTF-8');?>"><?php echo htmlspecialchars($value['created_username'], ENT_QUOTES, 'UTF-8');?></a>：
+										<em><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','read.php?tid=', rawurlencode($value['tid']),'&fid=', rawurlencode($value['fid']); ?>" class="title"><?php echo htmlspecialchars($value['subject'], ENT_QUOTES, 'UTF-8');?></a></em><br>
+										<div class="descrip"><?php echo htmlspecialchars(Pw::substrs(Pw::stripWindCode($value['content'],true),125), ENT_QUOTES, 'UTF-8');?></div>
 									</div>
-								</div>
+									<div class="info">
+										<span class="time"><?php echo htmlspecialchars($value['created_time_auto'], ENT_QUOTES, 'UTF-8');?></span>&nbsp;来自版块&nbsp;-&nbsp;<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=thread&fid=', rawurlencode($value['fid']); ?>"><?php echo $value['forum_name'];?></a>
+										<?php  if($relatedTags[$value['tid']]){ 
+  foreach($relatedTags[$value['tid']] as $k=>$v){ if ($k==$key) continue; ?>
+											<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&name=', rawurlencode($v['tag_name']); ?>"><?php echo htmlspecialchars($v['tag_name'], ENT_QUOTES, 'UTF-8');?></a>
+											<?php  } 
+  } ?>
+									</div>
+								</dd>
+							</dl>
+							<?php  } ?>
+							<div class="tac">
+								<?php $__tplPageCount=(int)$count;
+$__tplPagePer=(int)$perpage;
+$__tplPageTotal=(int)0;
+$__tplPageCurrent=(int)$page;
+if($__tplPageCount > 0 && $__tplPagePer > 0){
+$__tmp = ceil($__tplPageCount / $__tplPagePer);
+($__tplPageTotal !== 0 &&  $__tplPageTotal < $__tmp) || $__tplPageTotal = $__tmp;}
+$__tplPageCurrent > $__tplPageTotal && $__tplPageCurrent = $__tplPageTotal;
+if ($__tplPageTotal > 1) {
+ 
+$_page_min = max(1, $__tplPageCurrent-3);
+$_page_max = min($__tplPageTotal, $__tplPageCurrent+3);
+?>
+<div class="pages">
+<?php  if ($__tplPageCurrent > $_page_min) { 
+	$_page_i = $__tplPageCurrent-1;
+?>
+	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&page=', rawurlencode($_page_i); 
+ echo htmlspecialchars($args ? '&' . http_build_query($args) : '', ENT_QUOTES, 'UTF-8');?>" class="pages_pre J_pages_pre">&laquo;&nbsp;上一页</a>
+	<?php  if ($_page_min > 1) { 
+		$_page_i = 1;		
+	?>
+	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&page=', rawurlencode($_page_i); 
+ echo htmlspecialchars($args ? '&' . http_build_query($args) : '', ENT_QUOTES, 'UTF-8');?>">1...</a>
+	<?php  } 
+  for ($_page_i = $_page_min; $_page_i < $__tplPageCurrent; $_page_i++) { 
+	?>
+	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&page=', rawurlencode($_page_i); 
+ echo htmlspecialchars($args ? '&' . http_build_query($args) : '', ENT_QUOTES, 'UTF-8');?>"><?php echo htmlspecialchars($_page_i, ENT_QUOTES, 'UTF-8');?></a>
+	<?php  } 
+  } ?>
+	<strong><?php echo htmlspecialchars($__tplPageCurrent, ENT_QUOTES, 'UTF-8');?></strong>
+<?php  if ($__tplPageCurrent < $_page_max) { 
+  for ($_page_i = $__tplPageCurrent+1; $_page_i <= $_page_max; $_page_i++) { 
+	?>
+	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&page=', rawurlencode($_page_i); 
+ echo htmlspecialchars($args ? '&' . http_build_query($args) : '', ENT_QUOTES, 'UTF-8');?>"><?php echo htmlspecialchars($_page_i, ENT_QUOTES, 'UTF-8');?></a>
+	<?php  } 
+  if ($_page_max < $__tplPageTotal) { 
+		$_page_i = $__tplPageTotal;
+	?>
+	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&page=', rawurlencode($_page_i); 
+ echo htmlspecialchars($args ? '&' . http_build_query($args) : '', ENT_QUOTES, 'UTF-8');?>">...<?php echo htmlspecialchars($__tplPageTotal, ENT_QUOTES, 'UTF-8');?></a>
+	<?php  }
+		$_page_i = $__tplPageCurrent+1;
+	?>
+	<a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&page=', rawurlencode($_page_i); 
+ echo htmlspecialchars($args ? '&' . http_build_query($args) : '', ENT_QUOTES, 'UTF-8');?>" class="pages_next J_pages_next">下一页&nbsp;&raquo;</a>
+<?php  } ?>
+</div>
+<?php } ?>
 							</div>
 						</div>
+						<?php  } else { ?>
+						<div class="not_content">
+							啊哦，这个话题下暂没有任何内容哦！
+						</div>
+						<?php  } 
+  } ?>
+						</div>
 					</div>
-					<?php  } ?>
-					 
 				</div>
 			</div>
 			<div class="main_sidebar">
@@ -458,7 +470,7 @@ $_page_max = min($__tplPageTotal, $__tplPageCurrent+3);
 			<dd class="associate"><a class="sendpwd" rel="nofollow" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=u&c=findPwd'; ?>">找回密码</a><label for="head_checkbox" title="下次自动登录"><input type="checkbox" id="head_checkbox" name="rememberme" value="31536000">自动登录</label></dd>
 			<dd class="operate"><button type="submit" id="J_sidebar_login" class="btn btn_big btn_submit">登录</button><a class="btn btn_big btn_error" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=u&c=register'; ?>" rel="nofollow">立即注册</a></dd>
 		</dl>
-		<input type="hidden" name="csrf_token" value="<?php echo WindSecurity::escapeHTML(Wind::getComponent('windToken')->saveToken('csrf_token')); ?>"/><input type="hidden" name="csrf_token" value="<?php echo WindSecurity::escapeHTML(Wind::getComponent('windToken')->saveToken('csrf_token')); ?>"/></form>
+		<input type="hidden" name="csrf_token" value="<?php echo WindSecurity::escapeHTML(Wind::getComponent('windToken')->saveToken('csrf_token')); ?>"/></form>
         -->
         <dd class="operate"><button type="button" id="J_sidebar_login" class="btn btn_big btn_submit" onclick="location.href='<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=u&c=login'; ?>'">登录</button><a class="btn btn_big btn_error" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=u&c=register'; ?>" rel="nofollow" onclick="location.href='<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=u&c=register'; ?>'">立即注册</a></dd>
     </div>
@@ -538,71 +550,28 @@ $_page_max = min($__tplPageTotal, $__tplPageCurrent+3);
 	</div>
 <?php  } ?>
 	</div>
-<?php  } 
-  if ($loginUser->info['join_forum']) { 
-	Wind::import('APPS:bbs.controller.ForumController');
-	$myJoinForum = ForumController::splitStringToArray($loginUser->info['join_forum']);
-	$myJoinForumCount = count($myJoinForum);
-	
-?>
-<div class="box_wrap my_forum_list"><!--切换样式 my_forum_list_cur -->
-	<h2 class="box_title J_sidebar_box_toggle">我的版块<span class="num"><?php echo htmlspecialchars($myJoinForumCount, ENT_QUOTES, 'UTF-8');?></span></h2>
-	<ul>
-	<?php  foreach ($myJoinForum as $v => $k) { ?>
-		<li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=thread&fid=', rawurlencode($v); ?>"><?php echo htmlspecialchars($k, ENT_QUOTES, 'UTF-8');?></a></li>
-	<?php  } ?>
-	</ul>
-</div>
+<?php  } ?>
+
+<pw-drag id="sidebar_1" />
+<?php  if ($loginUser->isExists()) { ?>
+	<div class="box_wrap">
+		<h2 class="box_title J_sidebar_box_toggle">我的应用</h2>
+		<div class="my_app_list">
+			<ul>
+				<li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=vote&c=my'; ?>"><span class="icon_vote"></span>投票</a></li>
+				<li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=like&c=mylike'; ?>"><span class="icon_like"></span>喜欢</a></li>
+				<?php  if (Wekit::C('site','medal.isopen')){ ?>
+				<li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=medal'; ?>"><span class="icon_medal"></span>勋章</a></li>
+				<?php }
+ if (1 == Wekit::C('site', 'task.isOpen')) {?>
+				<li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=task'; ?>"><span class="icon_task"></span>任务</a></li>
+				<?php }?>
+			</ul>
+		</div>
+	</div>
 <?php  } ?>
 <!--advertisement id='Site.Sider.User' sys='1'/-->
-
-		<?php 
-			$forumdb = Wekit::load('forum.srv.PwForumService')->getCommonForumList();
-			if ($pwforum instanceof PwForumBo) {
-				$__currentCateId = $pwforum->getCateId();
-				$__currentFid = $pwforum->fid;
-				!isset($forumdb[0][$__currentCateId]) && $__currentCateId = key($forumdb[0]);
-			} else {
-				$__currentCateId = key($forumdb[0]);
-				$__currentFid = 0;
-			}
-		?>
-		<div class="box_wrap" aria-label="版块列表" role="tablist">
-			<h2 class="box_title J_sidebar_box_toggle">版块列表</h2>
-			<div class="forum_menu" >
-			<?php  foreach ($forumdb[0] as $k => $cate) { 
-  if ($forumdb[$cate['fid']]) { ?>
-				<dl class="<?php echo htmlspecialchars(Pw::isCurrent($k == $__currentCateId), ENT_QUOTES, 'UTF-8');?>">
-					<dt class="J_sidebar_forum_toggle"><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=cate&fid=', rawurlencode($cate['fid']); ?>"><?php echo htmlspecialchars(strip_tags($cate['name']), ENT_QUOTES, 'UTF-8');?></a></dt>
-					<dd role="tabpanel">
-						<?php  foreach ($forumdb[$cate['fid']] as $forums) { ?>
-						<p><a class="<?php echo htmlspecialchars(Pw::isCurrent($forums['fid'] == $__currentFid), ENT_QUOTES, 'UTF-8');?>" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?c=thread&fid=', rawurlencode($forums['fid']); ?>"><?php echo htmlspecialchars(strip_tags($forums['name']), ENT_QUOTES, 'UTF-8');?></a></p>
-						<?php  } ?>
-					</dd>
-				</dl>
-				<?php  } 
-  } ?>
-			</div>
-		</div>
-<?php $__tpl_data = call_user_func_array(
-								array(Wekit::load("SRV:tag.srv.PwTagService"), 
-								"getHotTags"), 
-								array('0','10')); 
-  if($__tpl_data) {?>
-<div class="box_wrap">
-	<h2 class="box_title">热门话题</h2>
-	<div class="tags_hot">
-	<ul class="cc">
-		<?php  foreach($__tpl_data as $k=>$v){ ?>
-		<li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&name=', rawurlencode($v['tag_name']); ?>" class="title"><?php echo htmlspecialchars($v['tag_name'], ENT_QUOTES, 'UTF-8');?></a></li>
-		<?php  } ?>
-	</ul>
-	</div>
-</div>
- 
-<?php  } 
-  
-  
+<?php  
 	if ($loginUser->info['recommend_friend']) {
 		$pFriends = Wekit::load('attention.srv.PwAttentionRecommendFriendsService')->getRecommentUser($loginUser);
 		if ($pFriends) {
@@ -659,15 +628,44 @@ $_page_max = min($__tplPageTotal, $__tplPageCurrent+3);
 	</div>
 </div>
 <?php  }} ?>
-
+<pw-drag id="sidebar_thread" />
  
-<!--design role="segment" id="linkdemo"/-->
-
+				<?php  if($hotTagList) { 
+?>
+<div class="box_wrap">
+	<h2 class="box_title">热门话题</h2>
+	<div class="tag_hot_list">
+		<ul>
+			<?php  foreach($hotTagList as $k=>$v){ ?>
+			<li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&name=', rawurlencode($v['tag_name']); ?>" class="title"><?php echo htmlspecialchars($v['tag_name'], ENT_QUOTES, 'UTF-8');?></a><em class="num"><?php echo htmlspecialchars($v['content_count'], ENT_QUOTES, 'UTF-8');?></em></li>
+			<?php  } if (count($hotTagList) > 9) { ?>
+			<li><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag'; ?>#tag_more_list" class="title">查看更多</a></li>
+			<?php  } ?>
+		</ul>
+	</div>
+</div>
+<?php  } 
+  if ($loginUser->isExists()) { ?>
+<div class="box_wrap">
+	<h2 class="box_title">我的话题</h2>
+	<div class="side_cate_list">
+		<?php  if ($myTags['tags']) { ?>
+		<ul id="J_side_my_tags">
+			<?php  foreach($myTags['tags'] as $v){ ?>
+			<li><a data-id="<?php echo htmlspecialchars($v['tag_id'], ENT_QUOTES, 'UTF-8');?>" title="取消关注该话题" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=attention&type=del&id=', rawurlencode($v['tag_id']); ?>" class="icon_del J_tag_del">删除</a><a href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view&name=', rawurlencode($v['tag_name']); ?>" class="title"><?php echo htmlspecialchars($v['tag_name'], ENT_QUOTES, 'UTF-8');?><em>(<?php echo htmlspecialchars($v['content_count'], ENT_QUOTES, 'UTF-8');?>)</em></a></li>
+			<?php  } if ($myTags['step']) { ?>
+			<li><a id="J_tag_more" href="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=attentionlist'; ?>" data-viewurl="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=view'; ?>" data-delurl="<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=attention&type=del'; ?>" class="title" data-step="<?php echo htmlspecialchars($myTags['step'], ENT_QUOTES, 'UTF-8');?>">查看更多</a></li>
+			<?php  } ?>
+		</ul>
+		<?php  } else { ?>
+		<div style="padding:20px 0;"><div class="not_content_mini"><i></i>你还没关注任何话题</div></div>
+		<?php  } ?>
+	</div>
+</div>
+<?php  } ?>
 			</div>
 		</div>
-		<div id="cloudwind_forum_bottom"></div>
 	</div>
-	
 <!--.main-wrap,#main End-->
 <div class="tac">
  <br />
@@ -675,7 +673,7 @@ $_page_max = min($__tplPageTotal, $__tplPageCurrent+3);
 </div>
 <div class="footer_wrap">
 	<div class="footer">
-		
+		<pw-drag id="footer_segment"/>
 		<div class="bottom">
 		<?php 
 			$nav = Wekit::load('SRV:nav.bo.PwNavBo');
@@ -701,20 +699,145 @@ PwHook::display(array(PwSimpleHook::getInstance("footer"), "runDo"), array(), ""
 <a href="#" rel="nofollow" role="button" id="back_top" tabindex="-1">返回顶部</a>
 
 </div>
-
 <script>
-var FID = '<?php echo htmlspecialchars($pwforum->fid, ENT_QUOTES, 'UTF-8');?>';
+var URL_ADD = '<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=attention&type=add'; ?>',	//关注
+	URL_DEL = '<?php echo Wind::getComponent('response')->getData('G', 'url', 'base'),'/','index.php?m=tag&a=attention&type=del'; ?>';	//取消关注
+	
 Wind.use('jquery', 'global', function(){
-<?php  if(!$is_design) { 
-  if (!$threaddb) { ?>
-	//无内容 发帖引导
-	Wind.js(GV.JS_ROOT + 'pages/bbs/postGuide.js?v=' + GV.JS_VERSION);
-<?php  } else { ?>
-	if(GV.U_ID) {
-		Wind.js(GV.JS_ROOT +'pages/bbs/threadManage.js?v=' + GV.JS_VERSION);
+
+<?php  if ($loginUser->isExists()) { ?>
+	//关注&取消关注
+	var follow_btn = $('#J_follow_btn'),
+		follow_count = $('#J_follow_count');	//关注统计
+	follow_btn.on('click', function(e){
+		e.preventDefault();
+		var $this = $(this),
+			type = $this.data('type'),
+			url = (type === 'add' ? URL_ADD : URL_DEL),
+			count = parseInt(follow_count.text()),
+			anti_text = (type === 'add' ? '取消关注' : '关注该话题'),			//文案
+			anti_type = (type === 'add' ? 'delete' : 'add'),				//标识
+			anti_cls = (type === 'add' ? 'core_unfollow' : 'core_follow'),	//class
+			anti_count = (type === 'add' ? count+1 : count-1);		//关注统计
+
+		$.post(url, {id : $this.data('id')}, function(data){
+
+			if(data.state === 'success') {
+				//写入相对的信息
+				$this.text(anti_text);
+				$this.data('type', anti_type);
+				$this.removeClass().addClass(anti_cls);
+
+				follow_count.text(anti_count);
+			}else if(data.state === 'fail') {
+				Wind.Util.resultTip({
+					error : true,
+					msg : data.message
+				});
+			}
+		}, 'json');
+	});
+
+	//关注一下
+	$('#J_none_follow').on('click', function(e){
+		e.preventDefault();
+		var $this = $(this);
+		$.getJSON($this.attr('href'), function(data){
+			if(data.state === 'success') {
+				Wind.Util.resultTip({
+					msg : '关注成功',
+					msg : data.message,
+					follow : $this,
+					callback : function(){
+						window.location.reload();
+					}
+				});
+			}else if(data.state === 'fail') {
+				Wind.Util.resultTip({
+					error : true,
+					msg : data.message,
+					follow : $this
+				});
+			}
+		})
+	});
+
+	//ie6屏蔽
+	if($.browser.msie && $.browser.version < 7) {
+		$('#J_tag_feed_lists dl').hover(function(){
+			$(this).addClass('current');
+		}, function(){
+			$(this).removeClass('current');
+		});
 	}
-<?php  } 
-  } ?>
+	
+
+<?php  } ?>
+
+	//阅读全部
+	var tag_excerpt_part = $('#J_tag_excerpt_part'),
+		tag_excerpt_ta = $('#J_tag_excerpt_ta');
+		
+	$('#J_show_more').on('click', function(e){
+		e.preventDefault();
+		var $this = $(this),
+			tag_excerpt_all = $('#J_tag_excerpt_all'),
+			type = $this.data('type'),
+			anti_type = (type === 'open' ? 'close' : 'open'),
+			anti_text = (type === 'open' ? '收起↑' : '阅读全部↓');
+		
+		if(type === 'open') {
+			//阅读全部
+			
+			if(tag_excerpt_all.length) {
+				//已经有html
+				tag_excerpt_all.show();
+				tag_excerpt_part.hide();
+			}else{
+				tag_excerpt_part.hide().before(tag_excerpt_ta.text());
+			}
+			
+		}else{
+			tag_excerpt_all.hide();
+			tag_excerpt_part.show();
+			$this.data('type', 'open');
+		}
+		
+		//修改文案
+		$this.data('type', anti_type).text(anti_text);
+		
+	});
+	
+	//屏蔽
+	$('a.J_tag_shield').on('click', function(e){
+		e.preventDefault();
+		var $this = $(this);
+		$.post($this.attr('href'), function(data){
+			if(data.state === 'success') {
+				Wind.Util.resultTip({
+					elem : $this,
+					follow : true,
+					msg : '操作成功',
+					callback : function(){
+						window.location.reload();
+					}
+				});
+			//	$this.parents('dl').slideUp('slow', function(){
+			//		$(this).remove();
+			//	});
+			}else{
+				Wind.Util.resultTip({
+					error : true,
+					elem : $this,
+					follow : true,
+					msg : data.message
+				});
+			}
+		}, 'json');
+	});
+	
+	Wind.use(GV.JS_ROOT +'pages/tag/tag_index.js?v=' + GV.JS_VERSION);
+	
 });
 </script>
 
